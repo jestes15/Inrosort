@@ -502,17 +502,29 @@ bool test_swap_iterator()
 {
     int arr[] = { 1, 2, 3 };
     int arrFinal[] = { 2, 1, 3 };
-    // std::vector<int> arrVector = { 1, 2, 3 };
-    // std::vector<int> arrVectorFinal = { 2, 1, 3 };
+    std::vector arrVector = { 1, 2, 3 };
+    std::vector arrVectorFinal = { 2, 1, 3 };
     std::array<int, 3> arrArray = { 1, 2, 3 };
     std::array<int, 3> arrArrayFinal = { 2, 1, 3 };
 
+
     IntroSort::swap(std::begin(arr), std::begin(arr)+1);
-    // IntroSort::swap(arrVector.begin(), arrVector.begin()+1);
+    IntroSort::swap(std::begin(arrVector), std::begin(arrVector)+1);
     IntroSort::swap(std::begin(arrArray), std::begin(arrArray)+1);
 
+    for (auto i : arr)
+      std::cout << i << " ";
+    std::cout << std::endl;
+    for (auto i : arrVector)
+      std::cout << i << " ";
+    std::cout << std::endl;
+    for (auto i : arrArray)
+      std::cout << i << " ";
+    std::cout << std::endl;
+
     return std::equal(std::begin(arr), std::end(arr), std::begin(arrFinal)) &&
-        std::equal(std::begin(arrArray), std::end(arrArray), std::begin(arrArrayFinal));
+        std::equal(std::begin(arrArray), std::end(arrArray), std::begin(arrArrayFinal)) &&
+        std::equal(std::begin(arrVector), std::end(arrVector), std::begin(arrVectorFinal));
 }
 
 void msg(std::string const& str, int const err)
